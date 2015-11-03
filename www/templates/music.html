@@ -1,0 +1,59 @@
+<ion-view view-title="Music">
+  <ion-content>
+    <ion-refresher on-refresh="doRefresh()"></ion-refresher>
+    <div class="list">
+        <a class="item item-icon-left item-icon-right" href="#" ng-click="setShuffle()">
+          <i class="icon ion-shuffle"></i>
+          Shuffle All
+          <i class="icon ion-checkmark" ng-show="shuffle"></i>
+        </a>
+        <a class="item item-thumbnail-left item-icon-right" href="#" ng-repeat="music in musics" on-hold="showMenu($event, music.name, music.id);" ng-click="playMedia($index);">
+          <img src="{{music.image}}">
+          <h2>{{music.name}}</h2>
+          <p>{{music.artist}}</p>
+          <p>{{music.album}}</p>
+          <i class="icon ion-volume-medium" ng-show="music.isPlay"></i>
+        </a>
+    </div>
+  </ion-content>
+  <ion-footer-bar class="bar bar-footer bar-light">
+    <div class="button-bar">
+      <button class="button icon ion-skip-backward" ng-click="back()"></button>
+      <button class="button icon ion-play" ng-click="play();" ng-hide="isPlaying"></button>
+      <button class="button icon ion-pause" ng-click="stop()" ng-show="isPlaying"></button>
+      <button class="button icon ion-skip-forward" ng-click="skip()"></button>
+    </div>
+  </ion-footer-bar>
+  <script id="templates/popover.html" type="text/ng-template">
+      <ion-popover-view>
+        <ion-content>
+          <div class="list">
+            <a class="item" ng-click="modal.show()">
+              add to playlist
+            </a>
+            <a class="item" ng-click="delete(name)">
+              delete
+            </a>
+          </div>
+        </ion-content>
+      </ion-popover-view>
+   </script>
+   <script id="templates/addToPlaylist.html" type="text/ng-template">
+      <ion-modal-view>
+        <ion-header-bar class="bar bar-header bar-positive">
+          <h1 class="title">Add Music</h1>
+          <button class="button button-clear icon ion-checkmark" ng-click="add()"></button>
+        </ion-header-bar>
+        <ion-content>
+            <ul class="list">
+              <li class="item item-checkbox" ng-repeat="playlist in playlists">
+                 <label class="checkbox">
+                   <input type="checkbox" value="{{playlist.id}}" ng-model="select[$index]">
+                 </label>
+                 {{playlist.name}}
+              </li>
+            </ul>
+        </ion-content>
+      </ion-modal-view>
+  </script>
+</ion-view>

@@ -1,0 +1,10 @@
+/* Empty. Add your own CSS if you like */
+.popover { 
+    height:100px; 
+    width: 150px;
+    overflow: auto; 
+}
+
+.dark{
+    background: #333;
+}

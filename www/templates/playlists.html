@@ -1,0 +1,25 @@
+<ion-view view-title="Playlists">
+  <ion-nav-buttons side="right">
+    <button class="button button-clear icon ion-plus" ng-click="addPlayList()"></button>
+  </ion-nav-buttons>
+  <ion-content>
+    <ion-refresher on-refresh="doRefresh()"></ion-refresher>
+    <ion-list>
+      <ion-item class="item-remove-animate item-icon-right" ng-repeat="playlist in playlists" on-hold="showMenu($event, playlist.id);" type="item-text-wrap" href="#/app/playlists/{{playlist.id}}">
+        {{playlist.name}}
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+  <script id="templates/popover.html" type="text/ng-template">
+      <ion-popover-view>
+        <ion-content>
+          <div class="list">
+            <a class="item" ng-click="delete(playlist_id)">
+              delete
+            </a>
+          </div>
+        </ion-content>
+      </ion-popover-view>
+  </script>
+</ion-view>
